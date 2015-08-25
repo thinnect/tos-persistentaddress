@@ -10,6 +10,8 @@
 module PersistentAddressP {
 	provides {
 		interface Boot;
+		interface Get<am_addr_t>;
+		interface Set<am_addr_t>;
 	}
 	uses {
 		interface InternalFlash;
@@ -95,6 +97,14 @@ implementation {
 		}
 
 		signal Boot.booted();
+	}
+
+	command am_addr_t Get.get() {
+		return loadAddr(ADDRSTRG_ADDR);
+	}
+
+	command void Set.set(am_addr_t addr) {
+		storeAddr(ADDRSTRG_ADDR, addr);
 	}
 
 	async event void ActiveMessageAddress.changed() { }

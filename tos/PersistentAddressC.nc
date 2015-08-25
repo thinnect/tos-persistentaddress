@@ -6,7 +6,11 @@
  * @license MIT
 */
 configuration PersistentAddressC {
-	provides interface Boot;
+	provides {
+		interface Boot;
+		interface Get<am_addr_t>;
+		interface Set<am_addr_t>;
+	}
 	uses interface Boot as SysBoot;
 }
 implementation {
@@ -14,6 +18,8 @@ implementation {
 	components PersistentAddressP;
 	PersistentAddressP.SysBoot = SysBoot;
 	Boot = PersistentAddressP.Boot;
+	Get = PersistentAddressP;
+	Set = PersistentAddressP;
 
 	components InternalFlashC;
 	PersistentAddressP.InternalFlash -> InternalFlashC;
