@@ -5,6 +5,7 @@
  * @author Raido Pahtma
  * @license MIT
 */
+#include "AM.h"
 configuration PersistentAddressC {
 	provides {
 		interface Boot;
